@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bellefair&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/statics/style.css" />
@@ -14,120 +14,30 @@
   </head>
   <body>
     <div class="container">
+      <div class="nave">
+        <ul>
+          <li><a href="">HOME</a></li>
+          <li>
+            <a href=""><img src="/statics/Logo.webp" alt="logo" /></a>
+          </li>
+          <li><a href="">GALLERY</a></li>
+        </ul>
+      </div>
+      <div class="circle"><img src="/statics/birds-in-the-trap-sing-mcknight-music-producer-musician-hip-hop-music-way-back-others-da6c6f23acaa596f3eb7c1163ac2ad0a.png" alt=""></div>
       <div class="hero">
-        <p>Unlock your imagination</p>
-        <h1 class="frHead"><span>A</span> JOURNEY</h1>
-        <h1 class="scHead">THROUGH MUSIC</h1>
-      </div>
-
-      <div class="cardContainer">
-        {{range .}} {{if lt .Id 13}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist/%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist/%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist/%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
+        <div class="info">
+          <h1>We preserve History</h1>
+          <h1>OF MUSICS</h1>
         </div>
-        {{end}} {{end}}
       </div>
-      <!-- <div class="cardContainer">
-        {{range .}} {{if and (gt .Id 10) (lt .Id 21)}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
+    </div>
+    <div class="container2">
+     <div class="hero2">
+        <div class="info2">
+          <h1>We preserve History</h1>
+          <h1>OF MUSICS</h1>
         </div>
-        {{end}} {{end}}
       </div>
-      <div class="cardContainer">
-        {{range .}} {{if and  (gt .Id 20) (lt .Id 31)}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
-        </div>
-        {{end}} {{end}}
-      </div>
-       <div class="cardContainer">
-        {{range .}} {{if and  (gt .Id 30) (lt .Id 41)}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
-        </div>
-        {{end}} {{end}}
-      </div>
-       <div class="cardContainer">
-        {{range .}} {{if and  (gt .Id 40) (lt .Id 51)}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
-        </div>
-        {{end}} {{end}}
-      </div>
-      <div class="cardContainer">
-        {{range .}} {{if and  (gt .Id 50) (lt .Id 61)}}
-        <div class="card">
-          <div class="image">
-            <img src="{{.Image}}" alt="" />
-          </div>
-          <div class="info">
-            <a href='{{printf "/artist%d" .Id}}'>{{.Name}}</a>
-            <a href='{{printf "/artist%d" .Id}}'
-              >Creation Date : {{.CreationDate}}</a
-            >
-            <a href='{{printf "/artist%d" .Id}}'
-              >First Album : {{.FirstAlbum}}</a
-            >
-          </div>
-        </div>
-        {{end}} {{end}}
-      </div> -->
     </div>
   </body>
 </html>
