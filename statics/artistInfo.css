@@ -1,0 +1,152 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Bellefair";
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: #0d0d0d;
+  overflow-x: hidden;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  overflow: hidden;
+}
+
+.container .nave {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 20px;
+  max-height: 100px;
+  min-height: 100px;
+}
+.container .nave ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.container .nave li a {
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+.container .nave li a img {
+  width: 100px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.container .hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .hero .AInfo,
+.ALocations {
+  width: 100%;
+  text-align: center;
+}
+.AInfo h1,
+.ALocations h1 {
+  font-size: 60px;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.container .hero .aboutArtist {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.container .hero .image h3 {
+  margin: 20px 0px 30px 0px;
+  color: white;
+  font-size: 60px;
+}
+.memebers,
+.creationDate,
+.FirstAlbum {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+}
+.memebers h1,
+.creationDate h1,
+.FirstAlbum h1,
+.locationData h3 {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.memebers p,
+.creationDate p,
+.FirstAlbum p,
+.locationData p,
+.infoplaces p,
+.infodates p {
+  color: #717171;
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+.locationData {
+  display: flex;
+
+  justify-content: space-around;
+  align-items: start;
+}
+
+.footer {
+    background-color: #626262ab;
+  margin-top: 70px;
+  padding: 10px 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+  border-radius: 20px 20px 0px 0px ;
+}
+.footer .logo {
+  padding: 10px;
+}
+.footer .logo img {
+  width: 130px;
+  object-fit: cover;
+}
+.footer .contact {
+  padding: 10px;
+}
+.footer .contact ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footer .contact ul li {
+  padding: 10px;
+}
+.footer .contact ul li a {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer .docs a {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
+}

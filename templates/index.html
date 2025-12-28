@@ -39,32 +39,67 @@
     </div>
     <div class="main">
       <div class="container2">
-        <div class="sside">
-          <div class="image">
-            <div class="circle"></div>
-            <img
-              src="/statics/tupac_png_transparent_image_by_ongpng_dglvao3-375w-2x-removebg-preview.png"
-              alt=""
-            />
+        <div class="mainSides">
+          <div class="sside">
+            <div class="image">
+              <div class="circle"></div>
+              <img
+                src="/statics/tupac_png_transparent_image_by_ongpng_dglvao3-375w-2x-removebg-preview.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="fside">
+            <div class="fDescrip">
+              <h1>
+                The World’s <br />
+                Leading Statue <br />
+                MUSIC
+              </h1>
+            </div>
+            <div class="sDescrip">
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Laborum deserunt ab alias enim quod aut recusandae nam sit
+                corporis voluptatem officia, fugiat, harum illo doloremque,
+                magnam debitis repudiandae placeat? Numquam?
+              </p>
+            </div>
           </div>
         </div>
-        <div class="fside">
-          <div class="fDescrip">
-            <h1>
-              The World’s <br />
-              Leading Statue <br />
-              MUSIC
-            </h1>
+      </div>
+      <div class="container3">
+        <h1>TOP ARTIST NOW</h1>
+        <div class="cardeMusic">
+          {{ range . }} {{if lt .Id 9}}
+          <div class="card{{.Id}}">
+            <img src="{{.Image}}" alt="" />
+            <div class="info">
+              <h1><a href="artist/{{.Id}}">{{.Name}}</a></h1>
+            </div>
           </div>
-          <div class="sDescrip">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum
-              deserunt ab alias enim quod aut recusandae nam sit corporis
-              voluptatem officia, fugiat, harum illo doloremque, magnam debitis
-              repudiandae placeat? Numquam?
-            </p>
-          </div>
+          {{end}} {{end}}
         </div>
+        <div class="lodemore">
+          <a href="">LODE MORE</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <div class="logo"><img src="/statics/Logo.webp" alt="" /></div>
+      </div>
+      <div>
+        <div class="contact">
+          <ul>
+            <li><a href="">HOME</a></li>
+            <li><a href="">GALLERY</a></li>
+            <li><a href="">ARTIST</a></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="docs"><a href="">API DOCS</a></div>
       </div>
     </div>
   </body>

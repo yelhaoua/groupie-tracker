@@ -1,17 +1,17 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
+	"strconv"
 )
 
 type LocationStruct struct {
 	Id       int      `json:"id"`
-	Locatins []string `json:"locations"`
+	Location []string `json:"locations"`
 }
 type DatesStruct struct {
 	Id       int      `json:"id"`
-	Locatins []string `json:"dates"`
+	Dates []string `json:"dates"`
 }
 
 type RelationStruct struct {
@@ -19,50 +19,51 @@ type RelationStruct struct {
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
-func handleLocations(w http.ResponseWriter, r *http.Request) {
-	var locatonsstruct LocationStruct
+type AllData struct {
+	Artist   Artist
+	Location LocationStruct
+	Dates    DatesStruct
+	Relation RelationStruct
+}
 
+func handleGetArtistInfo(w http.ResponseWriter, r *http.Request) {
+	var allinfo []Artist
+	var Locatonsstruct LocationStruct
+	var Datesstruct DatesStruct
+	var Relationstruct RelationStruct
+	num, nErr := strconv.Atoi(r.URL.Path[len("/artist/"):])
+	if nErr != nil {
+		HandlerErr(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+	Aerr := GetJson("https://groupietrackers.herokuapp.com/api/artists", &allinfo)
 	id := r.URL.Path[len("/artist/"):]
 	locations := "https://groupietrackers.herokuapp.com/api/locations/" + id
-	err := GetJson(locations, &locatonsstruct)
-	if err != nil {
+	Lerr := GetJson(locations, &Locatonsstruct)
+	dates := "https://groupietrackers.herokuapp.com/api/dates/" + id
+	Derr := GetJson(dates, &Datesstruct)
+	relation := "https://groupietrackers.herokuapp.com/api/relation/" + id
+	Rerr := GetJson(relation, &Relationstruct)
+	if Aerr != nil || Lerr != nil || Derr != nil || Rerr != nil {
 		HandlerErr(w, "Not Found", http.StatusNotFound)
 		return
 	}
-	Temp.ExecuteTemplate(w, "artistInfo.html", locatonsstruct)
-
-}
-func handleDates(w http.ResponseWriter, r *http.Request) {
-	var datesstruct DatesStruct
-	id := r.URL.Path[len("/artist/"):]
-	locations := "https://groupietrackers.herokuapp.com/api/dates/" + id
-	err := GetJson(locations, &datesstruct)
-	if err != nil {
-		fmt.Println(err)
-		HandlerErr(w, "Not Found", http.StatusNotFound)
-		return
+	var ArtistData Artist
+	for _, val := range allinfo {
+		if val.Id == num {
+			ArtistData = val
+			break
+		}
 	}
-	Temp.ExecuteTemplate(w, "artistInfo.html", datesstruct)
-
-}
-
-func handleRelation(w http.ResponseWriter, r *http.Request) {
-	var relationstruct RelationStruct
-	id := r.URL.Path[len("/artist/"):]
-	locations := "https://groupietrackers.herokuapp.com/api/relation/" + id
-	err := GetJson(locations, &relationstruct)
-	if err != nil {
-		fmt.Println(err)
-		HandlerErr(w, "Not Found", http.StatusNotFound)
-		return
+	data := AllData{
+		Artist:   ArtistData,
+		Location: Locatonsstruct,
+		Dates:    Datesstruct,
+		Relation: Relationstruct,
 	}
-	Temp.ExecuteTemplate(w, "artistInfo.html", relationstruct)
-
+	Temp.ExecuteTemplate(w, "artistInfo.html", data)
 }
 
 func HandleInfo(w http.ResponseWriter, r *http.Request) {
-	handleLocations(w, r)
-	handleDates(w, r)
-	handleRelation(w, r)
-
+	handleGetArtistInfo(w, r)
 }
