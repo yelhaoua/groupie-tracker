@@ -18,5 +18,4 @@ func HandlerErr(w http.ResponseWriter, description string, code int) {
 	}
 	w.WriteHeader(code)
 	Temp.ExecuteTemplate(w, "errorePage.html", pageErr)
-
 }

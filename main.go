@@ -7,11 +7,10 @@ import (
 )
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/statics/", handlers.HandleForbiden)
-	mux.HandleFunc("/", handlers.HandleHome)
-	mux.HandleFunc("/artist/{id}", handlers.HandleInfo)
-	mux.HandleFunc("/artist/", handlers.HandleArtist)
+	http.HandleFunc("/statics/", handlers.HandleForbiden)
+	http.HandleFunc("/", handlers.HandleHome)
+	http.HandleFunc("/artist/{id}", handlers.HandleInfo)
+	http.HandleFunc("/artist/", handlers.HandleArtist)
 
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe(":8080", nil)
 }

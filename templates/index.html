@@ -13,14 +13,14 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
+    <div id="container" class="container">
       <div class="nave">
         <ul>
-          <li><a href="">HOME</a></li>
+          <li><a href="/">HOME</a></li>
           <li>
-            <a href=""><img src="/statics/Logo.webp" alt="logo" /></a>
+            <a href="/"><img src="/statics/Logo.webp" alt="logo" /></a>
           </li>
-          <li><a href="">GALLERY</a></li>
+          <li><a href="/artist/">GALLERY</a></li>
         </ul>
         s
       </div>
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="container3">
+      <div id="container3" class="container3">
         <h1>TOP ARTIST NOW</h1>
         <div class="cardeMusic">
           {{ range . }} {{if lt .Id 9}}
@@ -92,14 +92,16 @@
       <div>
         <div class="contact">
           <ul>
-            <li><a href="">HOME</a></li>
-            <li><a href="">GALLERY</a></li>
-            <li><a href="">ARTIST</a></li>
+            <li><a href="#container">HOME</a></li>
+            <li><a href="/artist/">GALLERY</a></li>
+            <li><a href="#container3">ARTIST</a></li>
           </ul>
         </div>
       </div>
       <div>
-        <div class="docs"><a href="">API DOCS</a></div>
+        <div class="docs">
+          <a href="https://rickandmortyapi.com/">API DOCS</a>
+        </div>
       </div>
     </div>
   </body>

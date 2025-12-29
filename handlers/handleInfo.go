@@ -10,7 +10,7 @@ type LocationStruct struct {
 	Location []string `json:"locations"`
 }
 type DatesStruct struct {
-	Id       int      `json:"id"`
+	Id    int      `json:"id"`
 	Dates []string `json:"dates"`
 }
 
@@ -38,6 +38,10 @@ func handleGetArtistInfo(w http.ResponseWriter, r *http.Request) {
 	}
 	Aerr := GetJson("https://groupietrackers.herokuapp.com/api/artists", &allinfo)
 	id := r.URL.Path[len("/artist/"):]
+	if r.URL.Path != "/artist/"+id {
+		HandlerErr(w, "Page Not Found", http.StatusNotFound)
+		return
+	}
 	locations := "https://groupietrackers.herokuapp.com/api/locations/" + id
 	Lerr := GetJson(locations, &Locatonsstruct)
 	dates := "https://groupietrackers.herokuapp.com/api/dates/" + id
@@ -65,5 +69,7 @@ func handleGetArtistInfo(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleInfo(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "" {
+	}
 	handleGetArtistInfo(w, r)
 }

@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 )
 
 type Artist struct {
@@ -30,8 +31,11 @@ func HandleArtist(w http.ResponseWriter, r *http.Request) {
 		HandlerErr(w, "fetching Errore", http.StatusNotFound)
 		return
 	}
-	if r.URL.Path == "/artist/"{
+	if r.URL.Path == "/artist/" {
 		Temp.ExecuteTemplate(w, "allartist.html", ArrArtist)
+		return
+	} else if strings.Contains(r.URL.Path, "/artist/") && r.URL.Path != "/artist/" {
+		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
 	}
 	Temp.ExecuteTemplate(w, "index.html", ArrArtist)
