@@ -6,6 +6,7 @@ import (
 )
 
 func GetJson(URL string, data any) error {
+	// fetching the data from the url
 	res, err := http.Get(URL)
 	if err != nil {
 		return err

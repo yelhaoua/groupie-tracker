@@ -6,15 +6,18 @@ import (
 )
 
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
+	// get the pphat of the staticse files
 	info, err := os.Stat(r.URL.Path[1:])
+	// check if the file not existe
 	if err != nil {
-		HandlerErr(w, "Internal Server Error", http.StatusInternalServerError)
+		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
 	}
+	// cheak if is directory
 	if info.IsDir() {
 		HandlerErr(w, "Forbidden", http.StatusForbidden)
 		return
 	}
-
+	// serving all statics files
 	http.ServeFile(w, r, r.URL.Path[1:])
 }

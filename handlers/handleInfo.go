@@ -32,17 +32,20 @@ func HandleInfo(w http.ResponseWriter, r *http.Request) {
 	var Locatonsstruct LocationStruct
 	var Datesstruct DatesStruct
 	var Relationstruct RelationStruct
+	// check which methode usde
 	if r.Method != http.MethodGet {
 		HandlerErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
+	// converting the ID
 	num, nErr := strconv.Atoi(strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/"))
+	id := strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/")
 	if nErr != nil {
 		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
 	}
+	// fetch all url and check the msg errore
 	Aerr := GetJson("https://groupietrackers.herokuapp.com/api/artists", &allinfo)
-	id := strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/")
 	if r.URL.Path != "/artist/"+id {
 		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
@@ -58,6 +61,8 @@ func HandleInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var ArtistData Artist
+
+	// finde the asrtiste based on the ID
 	for _, val := range allinfo {
 		if val.Id == num {
 			ArtistData = val
@@ -70,5 +75,6 @@ func HandleInfo(w http.ResponseWriter, r *http.Request) {
 		Dates:    Datesstruct,
 		Relation: Relationstruct,
 	}
+	// execute the artistInfo template
 	Temp.ExecuteTemplate(w, "artistInfo.html", data)
 }
