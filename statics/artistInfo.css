@@ -15,7 +15,7 @@ body {
 .container {
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 80%;
   overflow: hidden;
 }
 
@@ -49,6 +49,11 @@ body {
   align-items: center;
   flex-direction: column;
 }
+.container .hero img{
+    width: 30%;
+    height: 30%;
+    border-radius: 100%;
+}
 
 .container .hero .AInfo,
 .ALocations {
@@ -66,6 +71,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  margin-bottom: 30px;
 }
 .container .hero .image h3 {
   margin: 20px 0px 30px 0px;
@@ -76,6 +82,7 @@ body {
 .creationDate,
 .FirstAlbum {
   display: flex;
+  flex: 1;
   justify-content: start;
   align-items: start;
   flex-direction: column;
@@ -102,23 +109,32 @@ body {
 
 .locationData {
   display: flex;
-
   justify-content: space-around;
   align-items: start;
 }
+.infoplaces,
+.infodates,
+.inforelations {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  flex: 1;
+}
 
 .footer {
-    background-color: #626262ab;
+  border: 2px solid;
+  border-color: #717171 #717171 transparent #717171;
   margin-top: 70px;
   padding: 10px 20px;
-  width: 90%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: start;
   gap: 10px;
-  border-radius: 20px 20px 0px 0px ;
+  border-radius: 20px 20px 0px 0px;
 }
 .footer .logo {
   padding: 10px;
@@ -128,6 +144,9 @@ body {
   object-fit: cover;
 }
 .footer .contact {
+  padding: 10px;
+}
+.footer .docs {
   padding: 10px;
 }
 .footer .contact ul {

@@ -11,6 +11,7 @@ func main() {
 	mux.HandleFunc("/statics/", handlers.HandleForbiden)
 	mux.HandleFunc("/", handlers.HandleHome)
 	mux.HandleFunc("/artist/{id}", handlers.HandleInfo)
+	mux.HandleFunc("/artist/", handlers.HandleArtist)
 
 	http.ListenAndServe(":8080", mux)
 }

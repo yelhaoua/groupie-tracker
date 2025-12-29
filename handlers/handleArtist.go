@@ -15,8 +15,10 @@ type Artist struct {
 	ConcertDates string   `json:"concertDates"`
 	Relations    string   `json:"relations"`
 }
+
 var ArrArtist []Artist
-func HandleArtist(w http.ResponseWriter, r any) {
+
+func HandleArtist(w http.ResponseWriter, r *http.Request) {
 	if ErrParse != nil {
 		HandlerErr(w, "Internal Server Error", http.StatusInternalServerError)
 		return
@@ -28,6 +30,9 @@ func HandleArtist(w http.ResponseWriter, r any) {
 		HandlerErr(w, "fetching Errore", http.StatusNotFound)
 		return
 	}
+	if r.URL.Path == "/artist/"{
+		Temp.ExecuteTemplate(w, "allartist.html", ArrArtist)
+		return
+	}
 	Temp.ExecuteTemplate(w, "index.html", ArrArtist)
-
 }
