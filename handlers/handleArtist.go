@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"strings"
 )
 
 type Artist struct {
@@ -24,19 +23,16 @@ func HandleArtist(w http.ResponseWriter, r *http.Request) {
 		HandlerErr(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-
+	if r.Method != http.MethodGet {
+		HandlerErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 	err := GetJson(url, &ArrArtist)
 	if err != nil {
 		HandlerErr(w, "fetching Errore", http.StatusNotFound)
 		return
 	}
-	if r.URL.Path == "/artist/" {
-		Temp.ExecuteTemplate(w, "allartist.html", ArrArtist)
-		return
-	} else if strings.Contains(r.URL.Path, "/artist/") && r.URL.Path != "/artist/" {
-		HandlerErr(w, "Page Not Found", http.StatusNotFound)
-		return
-	}
-	Temp.ExecuteTemplate(w, "index.html", ArrArtist)
+
+	Temp.ExecuteTemplate(w, "allartist.html", ArrArtist)
 }

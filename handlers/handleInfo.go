@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type LocationStruct struct {
@@ -26,18 +27,22 @@ type AllData struct {
 	Relation RelationStruct
 }
 
-func handleGetArtistInfo(w http.ResponseWriter, r *http.Request) {
+func HandleInfo(w http.ResponseWriter, r *http.Request) {
 	var allinfo []Artist
 	var Locatonsstruct LocationStruct
 	var Datesstruct DatesStruct
 	var Relationstruct RelationStruct
-	num, nErr := strconv.Atoi(r.URL.Path[len("/artist/"):])
+	if r.Method != http.MethodGet {
+		HandlerErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	num, nErr := strconv.Atoi(strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/"))
 	if nErr != nil {
-		HandlerErr(w, "Bad Request", http.StatusBadRequest)
+		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
 	}
 	Aerr := GetJson("https://groupietrackers.herokuapp.com/api/artists", &allinfo)
-	id := r.URL.Path[len("/artist/"):]
+	id := strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/")
 	if r.URL.Path != "/artist/"+id {
 		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return
@@ -66,10 +71,4 @@ func handleGetArtistInfo(w http.ResponseWriter, r *http.Request) {
 		Relation: Relationstruct,
 	}
 	Temp.ExecuteTemplate(w, "artistInfo.html", data)
-}
-
-func HandleInfo(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "" {
-	}
-	handleGetArtistInfo(w, r)
 }
