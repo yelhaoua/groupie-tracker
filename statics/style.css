@@ -172,8 +172,8 @@ body {
   top: 50%;
   left: 40%;
   transform: translate(-50%, -50%);
-  width: 650px;
-  height: 650px;
+  width: 77%;
+  height: 66%;
   border: 10px solid white;
   border-radius: 100%;
   box-shadow: 0px 2px 20px 2px white;
@@ -324,4 +324,52 @@ body {
   color: white;
   font-size: 20px;
   margin-bottom: 10px;
+}
+@media (max-width: 1200px) {
+  .cardeMusic {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 986px) {
+  .main .container2 .mainSides {
+    flex-direction: column;
+  }
+  .sside .circle {
+    width: 450px;
+    height: 450px;
+  }
+  .main .container2 .fDescrip h1 {
+    line-height: 100px;
+  }
+  .cardeMusic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .sside .circle {
+    display: none;
+  }
+  .main .container2 .fDescrip h1 {
+    line-height: 55px;
+    font-size: 40px;
+  }
+  .cardeMusic {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .main .container2 .sDescrip p {
+    font-size: 20px;
+  }
+  .container3 h1 {
+    font-size: 40px;
+  }
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+  .footer div {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -123,3 +123,29 @@ body {
   flex-direction: column;
   flex: 1;
 }
+@media (max-width: 768px) {
+  .container .hero .aboutArtist,
+  .locationData {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .AInfo h1,
+  .ALocations h1 {
+    font-size: 40px;
+  }
+  .memebers h1,
+  .creationDate h1,
+  .FirstAlbum h1,
+  .locationData h3 {
+    font-size: 20px;
+  }
+  .memebers p,
+  .creationDate p,
+  .FirstAlbum p,
+  .locationData p,
+  .infoplaces p,
+  .infodates p {
+    font-size: 15px;
+  }
+}
