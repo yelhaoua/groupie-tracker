@@ -2,10 +2,20 @@ package handlers
 
 import (
 	"net/http"
-	"text/template"
+	"html/template"
 )
 
+/*
+	This section contains:
+	1. Check if valid apath of home and method of request
+	2. Fetch Artists data to show on home page
+	3. Execute Index with Artitst data
+
+*/
+
+// global declarations
 var Temp, ErrParse = template.ParseGlob("./templates/*.html")
+var UrlArtist = "https://groupietrackers.herokuapp.com/api/artists"
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
 	var data []Artist
@@ -17,13 +27,17 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		// fetching the url and check if hase an errore
-		url := "https://groupietrackers.herokuapp.com/api/artists"
-		err := GetJson(url, &data)
+		
+		err := GetJson(UrlArtist, &data)
 		if err != nil {
 			HandlerErr(w, "Not Found", http.StatusNotFound)
 			return
 		}
-		Temp.ExecuteTemplate(w, "index.html", data)
+		error_page := Temp.ExecuteTemplate(w, "index.html", data)
+		if error_page != nil {
+			HandlerErr(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
 	} else {
 		HandlerErr(w, "Page Not Found", http.StatusNotFound)
 		return

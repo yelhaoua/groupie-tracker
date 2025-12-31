@@ -3,78 +3,65 @@ package handlers
 import (
 	"net/http"
 	"strconv"
-	"strings"
 )
 
-type LocationStruct struct {
-	Id       int      `json:"id"`
-	Location []string `json:"locations"`
-}
-type DatesStruct struct {
-	Id    int      `json:"id"`
-	Dates []string `json:"dates"`
-}
+/*
+	This section contains:
+	1. Get the artits id from url
+	2. fetch all artist data name, loctions, dates ...
+	3. Send the final data to page of artist info
 
-type RelationStruct struct {
-	Id             int                 `json:"id"`
-	DatesLocations map[string][]string `json:"datesLocations"`
-}
-
-type AllData struct {
-	Artist   Artist
-	Location LocationStruct
-	Dates    DatesStruct
-	Relation RelationStruct
-}
+*/
 
 func HandleInfo(w http.ResponseWriter, r *http.Request) {
-	var allinfo []Artist
-	var Locatonsstruct LocationStruct
-	var Datesstruct DatesStruct
-	var Relationstruct RelationStruct
+	var all_info []Artist
+	var LocatonsStruct LocationStruct
+	var DatesStruct DatesStruct
+	var RelationsStruct RelationStruct
+	var ArtistData Artist
+
 	// check which methode usde
 	if r.Method != http.MethodGet {
 		HandlerErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
 	// converting the ID
-	num, nErr := strconv.Atoi(strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/"))
-	id := strings.TrimSuffix(r.URL.Path[len("/artist/"):], "/")
-	if nErr != nil {
-		HandlerErr(w, "Page Not Found", http.StatusNotFound)
+	artist_id, num_error := strconv.Atoi(r.PathValue("id"))
+	if num_error != nil {
+		HandlerErr(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
 	// fetch all url and check the msg errore
-	Aerr := GetJson("https://groupietrackers.herokuapp.com/api/artists", &allinfo)
-	if r.URL.Path != "/artist/"+id {
-		HandlerErr(w, "Page Not Found", http.StatusNotFound)
-		return
-	}
-	locations := "https://groupietrackers.herokuapp.com/api/locations/" + id
-	Lerr := GetJson(locations, &Locatonsstruct)
-	dates := "https://groupietrackers.herokuapp.com/api/dates/" + id
-	Derr := GetJson(dates, &Datesstruct)
-	relation := "https://groupietrackers.herokuapp.com/api/relation/" + id
-	Rerr := GetJson(relation, &Relationstruct)
-	if Aerr != nil || Lerr != nil || Derr != nil || Rerr != nil {
-		HandlerErr(w, "Not Found", http.StatusNotFound)
-		return
-	}
-	var ArtistData Artist
+	artistError := GetJson(UrlArtist, &all_info)
 
-	// finde the asrtiste based on the ID
-	for _, val := range allinfo {
-		if val.Id == num {
+	// find the artist with same id
+	for _, val := range all_info {
+		if val.Id == artist_id {
 			ArtistData = val
 			break
 		}
 	}
+
+	locationError := GetJson(ArtistData.Locations, &LocatonsStruct)
+	datesError := GetJson(ArtistData.ConcertDates, &DatesStruct)
+	relationrror := GetJson(ArtistData.Relations, &RelationsStruct)
+	if artistError != nil || locationError != nil || datesError != nil || relationrror != nil {
+		HandlerErr(w, "Not Found", http.StatusNotFound)
+		return
+	}
+
+	// save the all data in one page to serve it
 	data := AllData{
 		Artist:   ArtistData,
-		Location: Locatonsstruct,
-		Dates:    Datesstruct,
-		Relation: Relationstruct,
+		Location: LocatonsStruct,
+		Dates:    DatesStruct,
+		Relation: RelationsStruct,
 	}
+
 	// execute the artistInfo template
-	Temp.ExecuteTemplate(w, "artistInfo.html", data)
+	error_page := Temp.ExecuteTemplate(w, "artistInfo.html", data)
+	if error_page != nil {
+		HandlerErr(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
 }

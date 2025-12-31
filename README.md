@@ -75,7 +75,7 @@ More about request–response communication can be found here:
 ### Running the project
 
 ```bash
-git clone git@github.com:yelhaoua/groupie-tracker.git
+git clone git@github.com:yelhaoua/groupie-tracker.git || https://learn.zone01oujda.ma/git/yelhaoua/groupie-tracker.git
 cd groupie-tracker
 go run .
 ```

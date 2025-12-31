@@ -5,6 +5,14 @@ import (
 	"os"
 )
 
+/*
+	This section contains:
+	1. Logic for handling forbidden access
+	2. Serving static files
+	
+*/
+
+
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
 	// get the pphat of the staticse files
 	info, err := os.Stat(r.URL.Path[1:])
