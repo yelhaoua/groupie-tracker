@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,6 +20,31 @@
       </div>
     </div>
     <div class="container3">
+      <div class="filtercontainer">
+        <form action="" method="post">
+          <div class="memberFilters">
+            <label for="">Filter By Members :</label>
+            <div class="allcheckbox">
+              <div class="chekbox">
+                <p>1 Member</p>
+                <input type="checkbox" name="mem1" value="1" />
+              </div>
+              <div class="chekbox">
+                <p>2 Members</p>
+                <input type="checkbox" name="mem2" value="2" />
+              </div>
+              <div class="chekbox">
+                <p>3 Members</p>
+                <input type="checkbox" name="mem3" value="3" />
+              </div>
+              <div class="chekbox">
+                <p>4 Members</p>
+                <input type="checkbox" name="mem4" value="4" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
       <h1>TOP ARTIST NOW</h1>
       <div class="cardeMusic">
         {{ range . }}

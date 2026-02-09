@@ -281,6 +281,40 @@ body {
   font-size: 20px;
   border-radius: 10px;
 }
+
+.filtercontainer{
+  width: 100%;
+  display: flex;
+}
+
+.allcheckbox {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.memberFilters {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}
+.memberFilters .chekbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+.memberFilters label {
+  color: white;
+  font-size: 20px;
+}
+.memberFilters .chekbox p {
+  color: #717171;
+  margin-right: 2px;
+  font-size: 18px;
+}
 .footer {
   margin-top: 70px;
   padding: 0px 20px;
