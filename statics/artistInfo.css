@@ -80,6 +80,7 @@ body {
   color: white;
   font-size: 60px;
 }
+
 .memebers,
 .creationDate,
 .FirstAlbum {
@@ -96,6 +97,10 @@ body {
   color: white;
   font-size: 30px;
   margin-bottom: 10px;
+}
+.locationData a {
+  color: #717171;
+  font-size: 20px ;
 }
 .memebers p,
 .creationDate p,
