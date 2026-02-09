@@ -4,7 +4,6 @@ package handlers
 	This page contains all structs used in the project
 */
 
-
 // For  Handler Error
 type info struct {
 	Code        int
@@ -48,4 +47,13 @@ type AllData struct {
 	Location LocationStruct
 	Dates    DatesStruct
 	Relation RelationStruct
+}
+
+type Place struct {
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+}
+
+type GeoResponse struct {
+	Results []Place `json:"Results"`
 }
