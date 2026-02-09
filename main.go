@@ -10,6 +10,7 @@ import (
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/statics/", handlers.HandleForbiden)
+	mux.HandleFunc("/geo", handlers.GetGeo)
 	mux.HandleFunc("/", handlers.HandleHome)
 	mux.HandleFunc("/artist/{id}", handlers.HandleInfo)
 	mux.HandleFunc("/artistes", handlers.HandleArtist)

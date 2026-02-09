@@ -53,8 +53,9 @@
           <div class="locationData">
             <div class="infoplaces">
               <h3>location Data</h3>
-              {{range .Location.Location}}
-              <p>{{.}}</p>
+               {{range .Location.Location}}
+               <a href="/geo?q={{.}}"><p>{{.}}</p></a>
+              
               {{end}}
             </div>
             <div class="infodates">
