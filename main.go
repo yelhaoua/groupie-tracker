@@ -12,6 +12,7 @@ func main() {
 	mux.HandleFunc("/statics/", handlers.HandleForbiden)
 	mux.HandleFunc("/", handlers.HandleHome)
 	mux.HandleFunc("/artist/{id}", handlers.HandleInfo)
+	mux.HandleFunc("/map/{name}", handlers.HandleMap)
 	mux.HandleFunc("/artistes", handlers.HandleArtist)
 	fmt.Printf("Server listning on : http://localhost:8080")
 	http.ListenAndServe(":8080", mux)
